@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \title{STK4021 Applied Bayesian Analysis compendium}
+\author{}
 
 \begin{document}
     \maketitle
@@ -10,5 +11,30 @@
     \section{Markov chain Monte Carlo}
 
         \subsection{Gibbs sampler}
+
+            \subsubsection*{With two parameters}
+                Gibbs sampling is practical when you wish to sample $\theta_1, \theta_2 \sim p(\theta_1, \theta_2)$, but cannot use:
+                \begin{itemize}
+                    \item direct simulation
+                    \item accept-reject method
+                    \item Metropolis-Hasting
+                \end{itemize}
+                But you can sample from:
+                \begin{itemize}
+                    \item $p(\theta_1 | \theta_2)$ and
+                    \item $p(\theta_2 | \theta_1)$
+                \end{itemize}
+
+            \subsubsection*{Algorithm}
+                \begin{enumerate}
+                    \item Select intial values for the parameters $\theta^{(0)}$
+                    \item Repeat for a given number of iterations, or untill some end condition is met:
+                    \begin{enumerate}    
+                        \item for each subset $\theta_j$ of $\theta$:
+                        \begin{enumerate}
+                            \item sample from $p\left(\theta_j^{(t)} | \theta_{-j}^{(t-1)}, y\right)$
+                        \end{enumerate}
+                    \end{enumerate}
+                \end{enumerate}
 
 \end{document}
